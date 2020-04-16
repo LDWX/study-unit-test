@@ -387,15 +387,123 @@ describe('jasmine.stringMatching', function() {
     
 });
 
-// MARK: custom asymmetry
+/**
+ * asymmeticMatch 可以自定义一个匹配规则
+ */
 describe('custom asymmetry', function() {
+  var tester = {
+    asymmetricMatch: function(actual) {
+      var secondValue = actual.split(',')[1]
+      return secondValue === 'bar'
+    }
+  }
   
+  it('dives in deep', function() {
+    expect("foo,bar,baz,quux").toEqual(tester)
+  });
+
+  
+  describe('when used with a spy', function() {
+    it("is useful for comparing arguments", function() {
+      var callback = jasmine.createSpy("callback")
+      callback("foo,bar,baz")
+
+      expect(callback).toHaveBeenCalledWith(tester)
+    })
+  });   
 });
   
+
+/**
+ * jasmine.clock() 用于测试需要依赖执行时间的测试用例
+ * 开启计时：jasmine.clock().install()
+ * 停止计时: jasmine.clock().uninstall()
+ * sleep程序： jasmine.clock().tick(time)
+ * 模拟指定日期： jasmine.clock().mockDate(new Date(2013,9,13))
+ */
+describe('Manually ticking the jasmine Clock', function() {
+  var timerCallback;
+
+  beforeEach(function() {
+    timerCallback = jasmine.createSpy("timerCallback");
+    jasmine.clock().install();
+  })
+  afterEach(function() {
+    jasmine.clock().uninstall();
+  })
+
+  it('causes a interval to be called synchronously', function() {
+    setInterval(function() {
+      timerCallback()
+    }, 100)
+
+    expect(timerCallback).not.toHaveBeenCalled()
+    jasmine.clock().tick(101);
+    expect(timerCallback.calls.count()).toEqual(1)
+
+    jasmine.clock().tick(50);
+    expect(timerCallback.calls.count()).toEqual(1)
+
+    jasmine.clock().tick(50);
+    expect(timerCallback.calls.count()).toEqual(2)
+  });
+
   
+  describe('Mocking the Date object', function() {
+    
+    it('mocks the Date object and sets it to a given time', function() {
+      var baseTime = new Date(2013,9,23)
+      jasmine.clock().mockDate(baseTime)
+      jasmine.clock().tick(50)
+      expect(new Date().getTime()).toEqual(baseTime.getTime() + 50)
+    });
+      
+  });   
+    
+});
+
+
+describe('Asynchronous specs', function() {
+  var value;
   
-  
-  
+  describe("Using callbacks", function() {
+    beforeEach(function(done) {
+      setTimeout(function() {
+        value = 0;
+        done();
+      },1)
+    })
+    
+    it('should support async execution of test preparation and expectations', function(done) {
+      value++;
+      expect(value).toBeGreaterThan(0)
+      done()
+    });
+
+    
+    describe('A spec using done.fail', function() {
+      var foo = function(x, callback1, callback2) {
+        if (x) {
+          setTimeout(callback1, 0)
+        } else {
+          setTimeout(callback2, 0)
+        }
+      }
+      
+      it('should not call the second callback', function(done) {
+        foo(
+          true,
+          done,
+          function() {
+            done.fail("Second callback has been called")
+          })
+      });
+        
+    });
+      
+      
+  })
+});
 
 
 describe('Using Promises', function() {
