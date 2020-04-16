@@ -1,7 +1,7 @@
 {
   "spec_dir": "myTestUnit",
   "spec_files": [
-    "**/*[sSpec][sS].js",
+    "**/*[sS]pec[s].js",
     "!**/PlayerSpec.js"
   ],
   "helpers": [
@@ -9,6 +9,5 @@
   ],
   "stopSpecOnExpectionFailure": false,
   "random": true
-
 
 }
