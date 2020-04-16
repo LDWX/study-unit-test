@@ -1,5 +1,7 @@
 这是一个纯 `jasmine` 测试用例学习，不包含 `babel` 及 `webpack`。
 
+项目持续更新中。。。。。。
+
 [官网测试用例及解析](./myTestUnit/jasmine_examples/firstSuiteSpecs.js)
 
 # 使用 node 启动 jasmine
