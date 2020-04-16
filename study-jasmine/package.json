@@ -1,0 +1,15 @@
+{
+  "name": "jasmine_examples",
+  "version": "1.0.0",
+  "description": "",
+  "main": "PlayerSpec.js",
+  "scripts": {
+    "test": "node nodeExecute.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jasmine": "^3.5.0"
+  }
+}
