@@ -1,6 +1,6 @@
 这是一个纯 `jasmine` 测试用例学习，不包含 `babel` 及 `webpack`。
 
-[官网测试用例及解析](./myTestUnit/jasmine_examples/tutorSpecs.js)
+[官网测试用例及解析](./myTestUnit/jasmine_examples/firstSuiteSpecs.js)
 
 # 使用 node 启动 jasmine
 > 参考 nodeExecute.js。
@@ -8,11 +8,11 @@
 # 使用命令行启动 jasmine
 
 ```bash
-jasmine --config=./myTestUnit/support/jasmine.json
+jasmine --config=./jasmine.json
 ```
 ## 若不指定 --config ,则默认地址为：
 ```bash
-jasmine --config=./spec/support/jasmine.json
+jasmine --config=./jasmine.json
 ```
 
 ## 执行单个/多个测试文件：
@@ -22,7 +22,7 @@ jasmine "**/model/**/critical/**/*Spec.js"
 ```
 应用举例：使用配置文件
 ```bash
-jasmine myTestUnit/jasmine_examples/PlayerSpec1.js --config=./myTestUnit/support/jasmine.json
+jasmine myTestUnit/jasmine_examples/PlayerSpec.js --config=./jasmine.json
 ```
 
 具体执行命令请参考[官方执行配置教程](https://jasmine.github.io/setup/nodejs.html)
