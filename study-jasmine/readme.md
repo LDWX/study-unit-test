@@ -1,6 +1,6 @@
 这是一个纯 `jasmine` 测试用例学习，不包含 `babel` 及 `webpack`。
 
-项目持续更新中。。。。。。
+**项目持续更新中。。。。。。**
 
 [官网测试用例及解析](./myTestUnit/jasmine_examples/firstSuiteSpecs.js)
 
@@ -30,7 +30,7 @@ jasmine myTestUnit/jasmine_examples/PlayerSpec.js --config=./jasmine.json
 具体执行命令请参考[官方执行配置教程](https://jasmine.github.io/setup/nodejs.html)
 
 # jasmine 配置文件含义
-```json
+```javascript
 {
   // Spec directory path relative to the current working dir when jasmine is executed.
   "spec_dir": "spec",
